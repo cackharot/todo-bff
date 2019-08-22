@@ -1,0 +1,46 @@
+version: "3"
+services:
+
+  todo-bff-app:
+    build:
+      context: .
+      args:
+        - BINARY_PATH
+    image: haskell/todo-bff-app
+    command: /opt/app/app-exe -- +RTS -T -RTS
+    ports:
+    - '8080:8080'
+
+  node_exporter:
+    image: prom/node-exporter
+    expose:
+      - 9100
+  
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+    - ./config/prometheus:/etc/prometheus
+    - prometheus_data:/prometheus
+    command:
+    - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+    - '9090:9090'
+    links:
+    - todo-bff-app
+  grafana:
+    image: grafana/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=pass1234
+    depends_on:
+      - prometheus
+    ports:
+      - "3000:3000"
+    links:
+      - prometheus
+    volumes:
+      - grafana_data:/var/lib/grafana
+    user: "104"    
+
+volumes:
+  prometheus_data: {}
+  grafana_data: {}

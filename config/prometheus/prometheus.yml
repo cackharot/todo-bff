@@ -1,0 +1,10 @@
+global:
+    scrape_interval: 5s
+    external_labels:
+      monitor: 'my-monitor'
+scrape_configs:
+  - job_name: 'myapp'
+    static_configs:
+      - targets: 
+        - haskell-app:8080
+        - node_exporter:9100
