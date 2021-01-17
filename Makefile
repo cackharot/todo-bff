@@ -16,6 +16,9 @@ test:
 run:
 	@docker-compose up -d
 
+run-local:
+	$(STACK) exec todo-bff-exe -- --port 18080 +RTS -T -N2 -RTS
+
 .PHONY: clean test
 
 clean:

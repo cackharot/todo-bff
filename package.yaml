@@ -1,0 +1,74 @@
+name:                todo-bff
+version:             0.1.0
+synopsis: >
+  Simple REST Web API server using chakra library.
+description: |
+  TODO REST Web API server using chakra library, that serves as a reference.
+  
+  For more details, please see the README on Github at <https://github.com/cackharot/todo-bff#readme>
+
+category:            Web
+github:              cackharot/todo-bff
+license:             MIT
+author:              Cackharot
+maintainer:          cackharot@gmail.com
+copyright:           2021 Cackharot
+
+extra-source-files:
+  - README.md
+
+tested-with: GHC==8.8.4
+
+dependencies:
+  - base >= 4.11 && < 10
+  - chakra
+  - rio
+  - aeson
+  - text
+  - servant-server
+  - dotenv
+  - optparse-simple
+
+default-extensions:
+  - OverloadedStrings
+  - NoImplicitPrelude
+
+ghc-options:
+  - -Wall
+  - -Wcompat
+  - -Widentities
+  - -Wincomplete-record-updates
+  - -Wincomplete-uni-patterns
+  - -Wpartial-fields
+  - -Wredundant-constraints
+
+library:
+  source-dirs: src
+  exposed-modules:
+    - Todo
+
+executables:
+  todo-bff-exe:
+    main: Main.hs
+    source-dirs: app
+    dependencies:
+      - todo-bff
+
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+      - -with-rtsopts=-T
+
+tests:
+  todo-bff-test:
+    main: Spec.hs
+    source-dirs: test
+    dependencies:
+      - todo-bff
+      - hspec
+
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N

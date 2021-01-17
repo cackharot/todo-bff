@@ -1,30 +1,33 @@
-# TODO-BFF
+# TODO :: Web Api
 
-An BFF type application written in Haskell using servent, wrap.
+A REST Web Api server in Haskell using chakra library.
 
 ## Goals
 
-To be a template project to bootstrap an web api/bff type app using onion layer architecture (controller, business, persistence)
-
-The controller layer will be simple/lean entry point providing RESETful endpoints (JSON).
-The business layer might follow DDD and event sourcing.
+The business layer must follow DDD, Event Sourcing & CQRS.
 The presistence layer should be agnostic and support plugable design, Postgresql, Cassandra, CouchDb, etc.,
 
-The below cross functional, reliable, scalable and observable features are a must
+Areas to explore:
 
-* Health check
-* Metrics (Prometheus)
-* Stateless
-* Circuit breaker
+- [ ] Event Sourced Domain Aggregates
+- [ ] Persist domain events to event store
+- [ ] Snapshotting the event stream store to reduce aggregates rebuilds
+- [ ] Projection Store
+- [ ] Stream API endpoints to stream any domain events from event store
+- [ ] Integrate with message broker (RabbitMQ) to send Integration events
+- [ ] Distributed domain aggregates (aka Actor) - requires cluster awarness, cloud-haskell
+
+## Dependencies
+
+- Prometheus
+- Grafana
+- PostgreSQL
 
 ## Build & Run
 
-```
+```bash
 make
 make test
 make run
 open http://localhost:18080
-
-## Docker
-make push # to push docker registry
 ```

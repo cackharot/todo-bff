@@ -1,49 +1,94 @@
-name:                todo-bff
-version:             0.1.0.0
-synopsis:            Todo Application Web/Mobile BackendForFrontend app
-description:         Please see README.md
-homepage:            https://github.com/cackharot/todo-bff#readme
-license:             BSD3
-license-file:        LICENSE
-author:              cackharot
-maintainer:          cackharot@gmail.com
-copyright:           2019 cackharot
-category:            Web
-build-type:          Simple
--- extra-source-files:
-cabal-version:       >=1.10
+cabal-version: 1.12
 
-library
-  hs-source-dirs:      src
-  exposed-modules:     Lib
-  build-depends:       base >= 4.7 && < 5
-                     , bytestring >=0.9
-                     , aeson
-                     , servant-server
-                     , wai >=3
-                     , warp
-                     , prometheus-client
-                     , wai-middleware-prometheus
-                     , prometheus-metrics-ghc
-  default-language:    Haskell2010
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: dc03b4afc6d6f265cb9b4f65cbdacbb7c5d006cbb9f63b03b95182e9d38069b5
 
-executable todo-bff-exe
-  hs-source-dirs:      app
-  main-is:             Main.hs
-  ghc-options:         -threaded -rtsopts "-with-rtsopts=-T"
-  build-depends:       base
-                     , todo-bff
-  default-language:    Haskell2010
+name:           todo-bff
+version:        0.1.0
+synopsis:       Simple REST Web API server using chakra library.
 
-test-suite todo-bff-test
-  type:                exitcode-stdio-1.0
-  hs-source-dirs:      test
-  main-is:             Spec.hs
-  build-depends:       base
-                     , todo-bff
-  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
-  default-language:    Haskell2010
+description:    TODO REST Web API server using chakra library, that serves as a reference.
+                .
+                For more details, please see the README on Github at <https://github.com/cackharot/todo-bff#readme>
+category:       Web
+homepage:       https://github.com/cackharot/todo-bff#readme
+bug-reports:    https://github.com/cackharot/todo-bff/issues
+author:         Cackharot
+maintainer:     cackharot@gmail.com
+copyright:      2021 Cackharot
+license:        MIT
+license-file:   LICENSE
+tested-with:    GHC==8.8.4
+build-type:     Simple
+extra-source-files:
+    README.md
 
 source-repository head
-  type:     git
+  type: git
   location: https://github.com/cackharot/todo-bff
+
+library
+  exposed-modules:
+      Todo
+  other-modules:
+      Paths_todo_bff
+  hs-source-dirs:
+      src
+  default-extensions: OverloadedStrings NoImplicitPrelude
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints
+  build-depends:
+      aeson
+    , base >=4.11 && <10
+    , chakra
+    , dotenv
+    , optparse-simple
+    , rio
+    , servant-server
+    , text
+  default-language: Haskell2010
+
+executable todo-bff-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_todo_bff
+  hs-source-dirs:
+      app
+  default-extensions: OverloadedStrings NoImplicitPrelude
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N -with-rtsopts=-T
+  build-depends:
+      aeson
+    , base >=4.11 && <10
+    , chakra
+    , dotenv
+    , optparse-simple
+    , rio
+    , servant-server
+    , text
+    , todo-bff
+  default-language: Haskell2010
+
+test-suite todo-bff-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      TodoSpec
+      Paths_todo_bff
+  hs-source-dirs:
+      test
+  default-extensions: OverloadedStrings NoImplicitPrelude
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aeson
+    , base >=4.11 && <10
+    , chakra
+    , dotenv
+    , hspec
+    , optparse-simple
+    , rio
+    , servant-server
+    , text
+    , todo-bff
+  default-language: Haskell2010
