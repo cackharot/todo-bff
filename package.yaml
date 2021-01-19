@@ -25,9 +25,14 @@ dependencies:
   - rio
   - aeson
   - text
+  - data-has
+  - envy
+  - bytestring
   - servant-server
   - dotenv
   - optparse-simple
+  - resource-pool
+  - postgresql-simple
 
 default-extensions:
   - OverloadedStrings

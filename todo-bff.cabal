@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: dc03b4afc6d6f265cb9b4f65cbdacbb7c5d006cbb9f63b03b95182e9d38069b5
+-- hash: a82caea600c0623746ce5fd4f2229ec9f5f2c6661df3ed945d34701f82f64c8f
 
 name:           todo-bff
 version:        0.1.0
@@ -34,6 +34,10 @@ library
   exposed-modules:
       Todo
   other-modules:
+      Db.Connection
+      Db.Migration
+      Db.Types
+      Types
       Paths_todo_bff
   hs-source-dirs:
       src
@@ -42,9 +46,14 @@ library
   build-depends:
       aeson
     , base >=4.11 && <10
+    , bytestring
     , chakra
+    , data-has
     , dotenv
+    , envy
     , optparse-simple
+    , postgresql-simple
+    , resource-pool
     , rio
     , servant-server
     , text
@@ -61,9 +70,14 @@ executable todo-bff-exe
   build-depends:
       aeson
     , base >=4.11 && <10
+    , bytestring
     , chakra
+    , data-has
     , dotenv
+    , envy
     , optparse-simple
+    , postgresql-simple
+    , resource-pool
     , rio
     , servant-server
     , text
@@ -83,10 +97,15 @@ test-suite todo-bff-test
   build-depends:
       aeson
     , base >=4.11 && <10
+    , bytestring
     , chakra
+    , data-has
     , dotenv
+    , envy
     , hspec
     , optparse-simple
+    , postgresql-simple
+    , resource-pool
     , rio
     , servant-server
     , text
