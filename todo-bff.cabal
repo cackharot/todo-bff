@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: a82caea600c0623746ce5fd4f2229ec9f5f2c6661df3ed945d34701f82f64c8f
+-- hash: a1a1566aa7cab7dfda46957c20455bed51a09b71e615cf8d7fa85eb00f0b5db9
 
 name:           todo-bff
 version:        0.1.0
@@ -51,12 +51,15 @@ library
     , data-has
     , dotenv
     , envy
+    , http-types
     , optparse-simple
     , postgresql-simple
     , resource-pool
     , rio
     , servant-server
     , text
+    , wai
+    , wai-cli
   default-language: Haskell2010
 
 executable todo-bff-exe
@@ -75,6 +78,7 @@ executable todo-bff-exe
     , data-has
     , dotenv
     , envy
+    , http-types
     , optparse-simple
     , postgresql-simple
     , resource-pool
@@ -82,6 +86,8 @@ executable todo-bff-exe
     , servant-server
     , text
     , todo-bff
+    , wai
+    , wai-cli
   default-language: Haskell2010
 
 test-suite todo-bff-test
@@ -103,6 +109,7 @@ test-suite todo-bff-test
     , dotenv
     , envy
     , hspec
+    , http-types
     , optparse-simple
     , postgresql-simple
     , resource-pool
@@ -110,4 +117,6 @@ test-suite todo-bff-test
     , servant-server
     , text
     , todo-bff
+    , wai
+    , wai-cli
   default-language: Haskell2010

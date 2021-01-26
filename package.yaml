@@ -23,6 +23,9 @@ dependencies:
   - base >= 4.11 && < 10
   - chakra
   - rio
+  - wai
+  - wai-cli
+  - http-types
   - aeson
   - text
   - data-has

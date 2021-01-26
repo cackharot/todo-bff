@@ -3,23 +3,25 @@ DC=docker-compose
 CWD=$(shell pwd)
 APP_PATH=$(shell stack exec which todo-bff-exe)
 APP_BIN=$(subst $(CWD)/,,$(APP_PATH))
+BIN="$(CWD)/bin"
 
-## Build binary and docker images
-build:
-	$(STACK) build
-	@echo "Binary file at $(APP_BIN)"
-	@BINARY_PATH=${APP_BIN} $(DC) build
+build: # Build binaries
+	$(STACK) build --local-bin-path $(BIN) --copy-bins
+	# @echo "Binary file at $(APP_BIN)"
+	# @BINARY_PATH=${APP_BIN} $(DC) build
 
-test:
+test: # Run tests
 	$(STACK) test
 
-run:
+run: # Run app & support infra in a docker compose
 	@docker-compose up -d
 
-run-local:
-	$(STACK) exec todo-bff-exe -- --port 18080 +RTS -T -N2 -RTS
+run-local: # Run app local without any support infra
+	# $(STACK) exec todo-bff-exe -- --port 18080 +RTS -T -N2 -RTS
+	$(BIN)/todo-bff-exe --port 8443 --protocol http+tls --tlskey certs/localhost.key --tlscert certs/localhost.crt +RTS -T -N2 -RTS
 
 .PHONY: clean test
 
-clean:
+clean: # clean workspace
 	$(STACK) clean
+	rm -rf $(BIN)/*
