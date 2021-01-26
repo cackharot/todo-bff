@@ -80,8 +80,8 @@ startApp infoDetail pgSettings = do
       appAPI = Proxy :: Proxy API
       appServer = todoServer :<|> basic :<|> emptyServer
   logFunc <- buildLogger appEnv appVer
-  -- middlewares <- chakraMiddlewares infoDetail
-  let middlewares = health
+  middlewares <- chakraMiddlewares infoDetail
+  -- let middlewares = health
   runChakraAppWithMetrics
     middlewares
     EmptyContext
